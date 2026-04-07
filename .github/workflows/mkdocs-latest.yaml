@@ -50,9 +50,9 @@ jobs:
     steps:
       - name: Trigger update_version workflow in trivy-telemetry
         env:
-          # Use ORG_REPO_TOKEN instead of GITHUB_TOKEN
+          # Use TRIVY_REPO_TOKEN instead of GITHUB_TOKEN
           # This allows triggering workflows in other repositories
-          GH_TOKEN: ${{ secrets.ORG_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.TRIVY_REPO_TOKEN }}
         run: |
           gh workflow run build-docs.yml \
             --repo "$GITHUB_REPOSITORY_OWNER/trivy-www" \
