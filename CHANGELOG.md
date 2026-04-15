@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.70.1](https://github.com/aquasecurity/trivy-release-test/compare/v0.70.0...v0.70.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* change trivy image repo to ghcr.io/aquasecurity/trivy-release-test ([#8](https://github.com/aquasecurity/trivy-release-test/issues/8)) ([0b79c45](https://github.com/aquasecurity/trivy-release-test/commit/0b79c4597c6d0a9a77080b63af1b0fcc51e29212))
+* test release flow ([84facd8](https://github.com/aquasecurity/trivy-release-test/commit/84facd8c11f08279ef05f3db6d6993f39edd693e))
+
 ## [0.70.0](https://github.com/aquasecurity/trivy-release-test/compare/v0.69.0...v0.70.0) (2026-04-14)
 
 
