@@ -15,6 +15,7 @@ import (
 )
 
 const chartFile = "./helm/trivy/Chart.yaml"
+const baseBranch = "main-test"
 
 func main() {
 	trivyVersion, err := version()
@@ -24,8 +25,8 @@ func main() {
 
 	// Checkout the main branch to get the latest chart version, that was changed after the previous release
 	// It needs for correctly updating the chart version of patch releases
-	if err := sh.Run("git", "checkout", "main"); err != nil {
-		log.Fatalf("failed to run `git checkout main`: %w", err)
+	if err := sh.Run("git", "checkout", baseBranch); err != nil {
+		log.Fatalf("failed to run `git checkout %s`: %w", baseBranch, err)
 	}
 
 	newHelmVersion, err := bumpHelmChart(chartFile, trivyVersion)
@@ -45,7 +46,7 @@ func main() {
 		[]string{"git", "add", chartFile},
 		[]string{"git", "commit", "-m", title},
 		[]string{"git", "push", "origin", newBranch},
-		[]string{"gh", "pr", "create", "--base", "main", "--head", newBranch, "--title", title, "--body", description, "--repo", "$GITHUB_REPOSITORY"},
+		[]string{"gh", "pr", "create", "--base", baseBranch, "--head", newBranch, "--title", title, "--body", description, "--repo", "$GITHUB_REPOSITORY"},
 	}
 
 	if err := runShCommands(cmds); err != nil {
